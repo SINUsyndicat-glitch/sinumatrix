@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SINU MATRIX UNIVERSE</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+</head>
+<body>
+
+    <div class="top-bar-matrix">
+        <div class="project-logo">💎 SINU MATRIX</div>
+        <div class="wallet-section">
+            <button id="connect-wallet-btn" onclick="connectWallet()">ربط المحفظة</button>
+            <span id="wallet-label" class="address-tag">غير متصل</span>
+        </div>
+    </div>
+
+    <div class="app-main-viewport">
+
+        <div id="section-live" class="matrix-section active">
+            <div class="video-wrapper">
+                <video id="webcamVideo" autoplay playsinline muted></video>
+                <canvas id="filterCanvas"></canvas>
+                <div id="camera-overlay" class="overlay-gate">
+                    <button class="action-btn-neon" onclick="startLiveStreaming()">إطلاق البث فائق الدقة Ultra HD</button>
+                </div>
+                <div id="live-hud" class="live-hud-container" style="display:none;">
+                    <span id="stream-timer" class="badge-timer">⏱️ 00:00</span>
+                    <span id="token-balance-hud" class="badge-balance">0.00 $SINU</span>
+                    <div id="live-chat" class="live-chat-box"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="section-gifts" class="matrix-section">
+            <div class="panel-header">🎁 متجر الهدايا الفاخرة والأقنعة التفاعلية</div>
+            <div id="gifts-grid-container" class="gifts-grid">
+                </div>
+        </div>
+
+        <div id="section-games" class="matrix-section">
+            <div class="panel-header">🎮 ساحة الألعاب وتعبئة المحفظة</div>
+            <div class="game-card">
+                <h4>لعبة اللامركزية (PvE لاعب ضد الكمبيوتر)</h4>
+                <button class="action-btn-neon" onclick="triggerFirebaseTransaction('GAME_START', 50)">ابدأ اللعب (تكلفة 50 $SINU عبر Firebase)</button>
+            </div>
+            <div class="firebase-billing-box">
+                <h4>💳 شحن الرصيد السريع (بدون Gas Fees هدر)</h4>
+                <input type="number" id="deposit-amount-input" placeholder="أدخل كمية $SINU">
+                <button class="action-btn-neon" onclick="executeFirebaseDeposit()">تعبئة الرصيد الفورية</button>
+            </div>
+        </div>
+
+        <div id="section-predictions" class="matrix-section">
+            <div class="panel-header">🏆 توقعات بطولة كأس العالم اللامركزية</div>
+            <div class="prediction-pool-card">
+                <h4>مباراة اليوم الفاصلة</h4>
+                <div class="teams-versus">فريق أ 🆚 فريق ب</div>
+                <div class="prediction-actions">
+                    <button class="predict-btn" onclick="submitWeb3Prediction(1)">توقع فوز فريق أ</button>
+                    <button class="predict-btn" onclick="submitWeb3Prediction(2)">توقع فوز فريق ب</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="section-profile" class="matrix-section">
+            <div class="panel-header">👤 الحساب الشخصي والمؤشرات</div>
+            <div class="profile-stats">
+                <p>عنوان المحفظة: <span id="profile-wallet-address">0x...</span></p>
+                <p>رصيد العقد الذكي: <span id="contract-balance-val">0 $SINU</span></p>
+                <p>رصيد Firebase السريع: <span id="firebase-balance-val">0 $SINU</span></p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="bottom-nav-bar">
+        <button class="nav-item active" onclick="switchMatrixSection('section-live', this)">📺 بث حي</button>
+        <button class="nav-item" onclick="switchMatrixSection('section-gifts', this)">🎁 هدايا</button>
+        <button class="nav-item" onclick="switchMatrixSection('section-games', this)">🎮 ألعاب</button>
+        <button class="nav-item" onclick="switchMatrixSection('section-predictions', this)">🏆 توقعات</button>
+        <button class="nav-item" onclick="switchMatrixSection('section-profile', this)">👤 ملفي</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
